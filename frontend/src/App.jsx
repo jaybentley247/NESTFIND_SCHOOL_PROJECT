@@ -11,13 +11,14 @@ import Enquiries from "./pages/Enquiries";
 import Messages from "./pages/Messages";
 import Dashboard from "./pages/Dashboard";
 import AddEditListing from "./pages/AddEditListing";
+import Hosts from "./pages/Hosts";
 import HostProfile from "./pages/HostProfile";
 import NotFound from "./pages/NotFound";
 
-// Route gating matches PRD section 7 exactly: /saved and /enquiries need
-// any authenticated user; /dashboard* is host-only. The frontend check is
-// a UX convenience — real enforcement happens in DRF permissions once the
-// backend exists (PRD page 14).
+// Route gating follows PRD section 7: /saved and /enquiries need any
+// authenticated user; /dashboard* is host-only. /hosts/:id also needs a
+// logged-in user, by the project owner's request. The frontend check is a
+// UX convenience — real enforcement happens in DRF permissions (PRD page 14).
 export default function App() {
   return (
     <Routes>
@@ -32,6 +33,7 @@ export default function App() {
           <Route path="/saved" element={<Saved />} />
           <Route path="/enquiries" element={<Enquiries />} />
           <Route path="/messages" element={<Messages />} />
+          <Route path="/hosts/:id" element={<HostProfile />} />
         </Route>
 
         <Route element={<ProtectedRoute role="host" />}>
@@ -40,7 +42,7 @@ export default function App() {
           <Route path="/dashboard/listings/:id/edit" element={<AddEditListing />} />
         </Route>
 
-        <Route path="/hosts/:id" element={<HostProfile />} />
+        <Route path="/hosts" element={<Hosts />} />
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>

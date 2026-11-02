@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { UserRound, Building2 } from "lucide-react";
 import { useAuth } from "../hooks/useAuth";
@@ -13,6 +13,7 @@ export default function Register() {
   const { register: doRegister } = useAuth();
   const { showToast } = useToast();
   const navigate = useNavigate();
+  const location = useLocation();
   const [avatarPreview, setAvatarPreview] = useState(null);
 
   const {
@@ -36,7 +37,7 @@ export default function Register() {
     try {
       const user = await doRegister(data);
       showToast(`Welcome to NestFind, ${user.full_name.split(" ")[0]}!`);
-      navigate(user.role === "host" ? "/dashboard" : "/");
+      navigate(location.state?.from?.pathname || (user.role === "host" ? "/dashboard" : "/"), { replace: true });
     } catch (error) {
       applyServerErrors(error, { setError, showToast });
     }
@@ -47,7 +48,7 @@ export default function Register() {
       <h1 className="text-2xl font-bold text-slate-900">Create your account</h1>
       <p className="mt-1 text-sm text-slate-500">
         Already have an account?{" "}
-        <Link to="/login" className="font-medium text-primary hover:underline">
+        <Link to="/login" state={location.state} className="font-medium text-primary hover:underline">
           Log in
         </Link>
       </p>

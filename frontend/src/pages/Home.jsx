@@ -7,11 +7,30 @@ import ErrorState from "../components/ui/ErrorState";
 import PropertyCardSkeleton from "../components/property/PropertyCardSkeleton";
 import { useProperties } from "../hooks/useProperties";
 import { TYPES, typeLabel } from "../utils/propertyTypes";
+import { NIGERIA_CITIES } from "../utils/nigeriaLocations";
 
 const steps = [
-  { icon: ListChecks, title: "List", body: "Hosts create a listing with photos, price, and location in minutes." },
-  { icon: Compass, title: "Discover", body: "Buyers and tenants search and filter listings that match their needs." },
-  { icon: MessageCircle, title: "Connect", body: "Send an enquiry directly to the host and arrange a viewing." },
+  {
+    icon: ListChecks,
+    title: "List",
+    body: "Hosts create a listing with photos, price, and location in minutes.",
+    image: "/how-it-works/list.jpg",
+    alt: "Hands holding a smartphone to photograph a furnished living room",
+  },
+  {
+    icon: Compass,
+    title: "Discover",
+    body: "Buyers and tenants search and filter listings that match their needs.",
+    image: "/how-it-works/discover.jpg",
+    alt: "Smiling couple on a sofa searching for a home on a laptop",
+  },
+  {
+    icon: MessageCircle,
+    title: "Connect",
+    body: "Send an enquiry directly to the host and arrange a viewing.",
+    image: "/how-it-works/connect.jpg",
+    alt: "Host opening the front door to welcome a visitor to a property viewing",
+  },
 ];
 
 const propertyTypes = [
@@ -50,9 +69,28 @@ const popularCities = [
   },
 ];
 
+// Covers short-lets at the low end through to sale prices at the high end.
+const maxPriceOptions = [
+  100000, 500000, 1000000, 2000000, 5000000, 10000000, 25000000, 50000000, 100000000, 200000000, 500000000,
+];
+
+const searchSelectClass =
+  "mt-1 w-full rounded-lg border border-slate-200 px-3 py-3 text-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary";
+
+function SearchField({ label, children }) {
+  return (
+    <label className="block text-left">
+      <span className="text-xs font-semibold uppercase tracking-wide text-slate-500">{label}</span>
+      {children}
+    </label>
+  );
+}
+
 export default function Home() {
   const navigate = useNavigate();
   const [location, setLocation] = useState("");
+  const [maxPrice, setMaxPrice] = useState("");
+  const [bedrooms, setBedrooms] = useState("");
   const [type, setType] = useState("");
   const [listingType, setListingType] = useState("");
 
@@ -62,6 +100,8 @@ export default function Home() {
     event.preventDefault();
     const params = new URLSearchParams();
     if (location) params.set("city", location);
+    if (maxPrice) params.set("max_price", maxPrice);
+    if (bedrooms) params.set("bedrooms", bedrooms);
     if (type) params.set("type", type);
     if (listingType) params.set("listing_type", listingType);
     navigate(`/listings${params.toString() ? `?${params.toString()}` : ""}`);
@@ -117,40 +157,56 @@ export default function Home() {
         <div className="relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <form
             onSubmit={handleSearch}
-            className="-mt-16 flex flex-col gap-3 rounded-2xl bg-white p-4 shadow-2xl ring-1 ring-black/5 sm:flex-row sm:items-center"
+            className="-mt-16 grid grid-cols-1 items-end gap-3 rounded-2xl bg-white p-4 shadow-2xl ring-1 ring-black/5 sm:grid-cols-3 lg:grid-cols-6"
           >
-            <input
-              type="text"
-              value={location}
-              onChange={(event) => setLocation(event.target.value)}
-              placeholder="City, e.g. Lagos"
-              className="flex-1 rounded-lg border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
-              aria-label="Search by city"
-            />
-            <select
-              value={type}
-              onChange={(event) => setType(event.target.value)}
-              className="rounded-lg border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
-              aria-label="Property type"
-            >
-              <option value="">Any type</option>
-              {TYPES.map((t) => (
-                <option key={t} value={t}>
-                  {typeLabel(t)}
-                </option>
-              ))}
-            </select>
-            <select
-              value={listingType}
-              onChange={(event) => setListingType(event.target.value)}
-              className="rounded-lg border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
-              aria-label="Rent or sale"
-            >
-              <option value="">Rent or Sale</option>
-              <option value="rent">For Rent</option>
-              <option value="sale">For Sale</option>
-              <option value="shortlet">Short-let</option>
-            </select>
+            <SearchField label="City">
+              <select value={location} onChange={(event) => setLocation(event.target.value)} className={searchSelectClass}>
+                <option value="">All cities</option>
+                {NIGERIA_CITIES.map((city) => (
+                  <option key={city} value={city}>
+                    {city}
+                  </option>
+                ))}
+              </select>
+            </SearchField>
+            <SearchField label="Max Price">
+              <select value={maxPrice} onChange={(event) => setMaxPrice(event.target.value)} className={searchSelectClass}>
+                <option value="">Any price</option>
+                {maxPriceOptions.map((price) => (
+                  <option key={price} value={price}>
+                    ₦{price.toLocaleString()}
+                  </option>
+                ))}
+              </select>
+            </SearchField>
+            <SearchField label="Bedrooms">
+              <select value={bedrooms} onChange={(event) => setBedrooms(event.target.value)} className={searchSelectClass}>
+                <option value="">Any beds</option>
+                {[1, 2, 3, 4, 5].map((n) => (
+                  <option key={n} value={n}>
+                    {n}+ {n === 1 ? "bedroom" : "bedrooms"}
+                  </option>
+                ))}
+              </select>
+            </SearchField>
+            <SearchField label="Property Type">
+              <select value={type} onChange={(event) => setType(event.target.value)} className={searchSelectClass}>
+                <option value="">Any type</option>
+                {TYPES.map((t) => (
+                  <option key={t} value={t}>
+                    {typeLabel(t)}
+                  </option>
+                ))}
+              </select>
+            </SearchField>
+            <SearchField label="Rent or Sale">
+              <select value={listingType} onChange={(event) => setListingType(event.target.value)} className={searchSelectClass}>
+                <option value="">Any</option>
+                <option value="rent">For Rent</option>
+                <option value="sale">For Sale</option>
+                <option value="shortlet">Short-let</option>
+              </select>
+            </SearchField>
             <button
               type="submit"
               className="flex items-center justify-center gap-2 rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-white hover:bg-primary-700"
@@ -201,9 +257,10 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <h2 className="text-center text-2xl font-bold text-slate-900">How It Works</h2>
           <div className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-3">
-            {steps.map(({ icon: Icon, title, body }) => (
+            {steps.map(({ icon: Icon, title, body, image, alt }) => (
               <div key={title} className="text-center">
-                <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-primary-100 text-primary-700">
+                <img src={image} alt={alt} loading="lazy" className="aspect-[4/3] w-full rounded-xl object-cover" />
+                <div className="relative mx-auto -mt-6 flex h-12 w-12 items-center justify-center rounded-full bg-primary-100 text-primary-700 ring-4 ring-white">
                   <Icon className="h-6 w-6" aria-hidden="true" />
                 </div>
                 <h3 className="mt-4 text-lg font-semibold text-slate-900">{title}</h3>

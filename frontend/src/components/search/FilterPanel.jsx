@@ -1,5 +1,6 @@
 import { TYPES, LISTING_TYPES, typeLabel, listingTypeLabel } from "../../utils/propertyTypes";
 import { AMENITIES } from "../../utils/amenities";
+import { NIGERIA_CITIES } from "../../utils/nigeriaLocations";
 import DebouncedInput from "../ui/DebouncedInput";
 
 function Field({ label, children }) {
@@ -38,13 +39,14 @@ export default function FilterPanel({ filters, setFilter, clearFilters }) {
       </div>
 
       <Field label="City">
-        <DebouncedInput
-          type="text"
-          value={filters.city || ""}
-          onChange={(value) => setFilter("city", value)}
-          placeholder="e.g. Lagos"
-          className={selectClass}
-        />
+        <select value={filters.city || ""} onChange={(e) => setFilter("city", e.target.value)} className={selectClass}>
+          <option value="">Any city</option>
+          {NIGERIA_CITIES.map((city) => (
+            <option key={city} value={city}>
+              {city}
+            </option>
+          ))}
+        </select>
       </Field>
 
       <Field label="Property Type">

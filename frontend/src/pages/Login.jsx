@@ -35,7 +35,7 @@ export default function Login() {
       <h1 className="text-2xl font-bold text-slate-900">Log in to NestFind</h1>
       <p className="mt-1 text-sm text-slate-500">
         Don't have an account?{" "}
-        <Link to="/register" className="font-medium text-primary hover:underline">
+        <Link to="/register" state={location.state} className="font-medium text-primary hover:underline">
           Sign up
         </Link>
       </p>

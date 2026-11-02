@@ -4,7 +4,10 @@ import { Menu, X, LogOut, Heart, Mail, LayoutDashboard } from "lucide-react";
 import { useAuth } from "../../hooks/useAuth";
 
 function navLinksFor(user) {
-  const links = [{ to: "/listings", label: "Browse Listings" }];
+  const links = [
+    { to: "/listings", label: "Browse Listings" },
+    { to: "/hosts", label: "Find a Host" },
+  ];
   if (user?.role === "host") links.push({ to: "/dashboard", label: "Host Dashboard" });
   if (user?.role === "tenant") {
     links.push({ to: "/saved", label: "Saved" }, { to: "/enquiries", label: "My Enquiries" });
