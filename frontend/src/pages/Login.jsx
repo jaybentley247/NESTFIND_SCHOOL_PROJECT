@@ -80,12 +80,6 @@ export default function Login() {
           {isSubmitting ? "Logging in…" : "Log in"}
         </button>
       </form>
-
-      <div className="mt-6 rounded-lg border border-dashed border-slate-200 p-3 text-xs text-slate-500">
-        <p className="font-semibold text-slate-600">Demo accounts</p>
-        <p>Host: adaeze@nestfind.test / password123</p>
-        <p>Tenant: ngozi@nestfind.test / password123</p>
-      </div>
     </div>
   );
 }
