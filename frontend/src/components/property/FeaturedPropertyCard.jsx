@@ -45,11 +45,15 @@ export default function FeaturedPropertyCard({ property }) {
       </div>
 
       <div className="flex flex-1 flex-col p-4">
-        <h3 className="truncate text-base font-bold text-slate-900">{title}</h3>
-        <p className="mt-1 flex items-center gap-1 text-xs text-slate-500">
-          <MapPin className="h-3.5 w-3.5" aria-hidden="true" />
-          {city}, {state}
-        </p>
+        <Link to={`/listings/${id}`} className="group/title block">
+          <h3 className="truncate text-base font-bold text-slate-900 transition-colors group-hover/title:text-primary">
+            {title}
+          </h3>
+          <p className="mt-1 flex items-center gap-1 text-xs text-slate-500">
+            <MapPin className="h-3.5 w-3.5" aria-hidden="true" />
+            {city}, {state}
+          </p>
+        </Link>
 
         <div className="mt-3 flex items-center gap-3 border-y border-slate-100 py-3 text-xs text-slate-600">
           <span className="flex items-center gap-1">
