@@ -11,7 +11,7 @@ const STATES = {
     icon: CheckCircle2,
     color: "text-green-600 bg-green-100",
     title: "Payment successful",
-    body: "Your payment has been confirmed. The host can see it on their dashboard.",
+    body: "Your payment has been confirmed and a receipt has been issued. You can view it any time under My Payments.",
   },
   failed: {
     icon: XCircle,
@@ -115,6 +115,14 @@ export default function PaymentResult() {
             >
               {isFetching ? "Checking…" : "Check again"}
             </button>
+          )}
+          {payment.status === "successful" && (
+            <Link
+              to={`/payments/${payment.id}/receipt`}
+              className="rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-white hover:bg-primary-700"
+            >
+              View receipt
+            </Link>
           )}
           <Link to="/payments" className="rounded-lg border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50">
             My payments

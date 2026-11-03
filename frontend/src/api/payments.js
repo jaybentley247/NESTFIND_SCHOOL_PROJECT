@@ -20,6 +20,11 @@ export async function listMyPayments(params = {}) {
   return data;
 }
 
+export async function getReceipt(id) {
+  const { data } = await client.get(`/payments/${id}/receipt/`);
+  return data;
+}
+
 export async function listReceivedPayments(params = {}) {
   const { data } = await client.get("/payments/received/", { params });
   return data;

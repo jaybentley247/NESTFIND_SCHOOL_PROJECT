@@ -39,7 +39,7 @@ export default function Navbar() {
   }
 
   return (
-    <header className="sticky top-0 z-40 border-b border-slate-200 bg-surface/90 backdrop-blur">
+    <header className="sticky top-0 z-40 print:hidden border-b border-slate-200 bg-surface/90 backdrop-blur">
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 sm:px-6 lg:px-8">
         <Link to="/" className="flex items-center">
           <img src="/Arowwai-red.png" alt="NestFind" className="h-16 w-auto" />

@@ -19,7 +19,7 @@ const columns = [
 
 export default function Footer() {
   return (
-    <footer className="border-t border-slate-200 bg-slate-50">
+    <footer className="print:hidden border-t border-slate-200 bg-slate-50">
       <div className="mx-auto grid max-w-7xl grid-cols-2 gap-8 px-4 py-12 sm:px-6 md:grid-cols-4 lg:px-8">
         <div className="col-span-2 md:col-span-2">
           <img src="/Arowwai-red.png" alt="NestFind" loading="lazy" className="h-14 w-auto" />

@@ -63,6 +63,7 @@ export default function Payments() {
                   <th className="px-4 py-3">Amount</th>
                   <th className="px-4 py-3">Date</th>
                   <th className="px-4 py-3">Status</th>
+                  <th className="px-4 py-3">Receipt</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100">
@@ -84,6 +85,15 @@ export default function Payments() {
                       <span className={`rounded-full px-2.5 py-1 text-xs font-semibold capitalize ${PAYMENT_STATUS_STYLES[payment.status]}`}>
                         {payment.status}
                       </span>
+                    </td>
+                    <td className="px-4 py-3">
+                      {payment.receipt_number ? (
+                        <Link to={`/payments/${payment.id}/receipt`} className="font-medium text-primary hover:underline">
+                          View receipt
+                        </Link>
+                      ) : (
+                        <span className="text-slate-400">—</span>
+                      )}
                     </td>
                   </tr>
                 ))}

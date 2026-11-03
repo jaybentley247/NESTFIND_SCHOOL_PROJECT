@@ -11,6 +11,7 @@ import Enquiries from "./pages/Enquiries";
 import Messages from "./pages/Messages";
 import Payments from "./pages/Payments";
 import PaymentResult from "./pages/PaymentResult";
+import Receipt from "./pages/Receipt";
 import Dashboard from "./pages/Dashboard";
 import AddEditListing from "./pages/AddEditListing";
 import Hosts from "./pages/Hosts";
@@ -38,6 +39,7 @@ export default function App() {
           <Route path="/hosts/:id" element={<HostProfile />} />
           <Route path="/payments" element={<Payments />} />
           <Route path="/payments/result" element={<PaymentResult />} />
+          <Route path="/payments/:id/receipt" element={<Receipt />} />
         </Route>
 
         <Route element={<ProtectedRoute role="host" />}>
