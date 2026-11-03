@@ -37,7 +37,7 @@ export default function ListingsGrid({ listings, enquiriesByProperty, onDeleteRe
   return (
     <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {listings.map((property) => (
-        <div key={property.id} className="overflow-hidden rounded-xl border border-slate-200 bg-white">
+        <div key={property.id} className="overflow-hidden rounded-xl border border-slate-200 bg-surface">
           <div className="relative aspect-[4/3]">
             <img src={property.cover_image} alt="" loading="lazy" className="h-full w-full object-cover" />
             <span

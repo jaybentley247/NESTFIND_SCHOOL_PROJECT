@@ -4,24 +4,23 @@ import { formatDate } from "../../utils/formatDate";
 
 export default function HostCard({ host, listingCount, onContact }) {
   return (
-    <div className="rounded-xl border border-slate-200 bg-white p-5">
+    <div className="rounded-xl border border-slate-200 bg-surface p-5">
       <div className="flex items-center gap-3">
-        <img
-          src={host.avatar}
-          alt={host.name}
-          loading="lazy"
-          className="h-14 w-14 rounded-full object-cover"
-        />
+        {host.avatar ? (
+          <img src={host.avatar} alt={host.full_name} loading="lazy" className="h-14 w-14 rounded-full object-cover" />
+        ) : (
+          <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-primary-100 text-lg font-bold text-primary-strong">
+            {host.full_name?.[0]?.toUpperCase()}
+          </span>
+        )}
         <div>
           <Link to={`/hosts/${host.id}`} className="font-semibold text-slate-900 hover:text-primary">
-            {host.name}
+            {host.full_name}
           </Link>
-          <p className="text-xs text-slate-500">Member since {formatDate(host.member_since)}</p>
+          <p className="text-xs text-slate-500">Member since {formatDate(host.created_at)}</p>
           <p className="text-xs text-slate-500">{listingCount} active listing{listingCount === 1 ? "" : "s"}</p>
         </div>
       </div>
-
-      <p className="mt-3 text-xs text-slate-500">{host.response_time}</p>
 
       <button
         type="button"

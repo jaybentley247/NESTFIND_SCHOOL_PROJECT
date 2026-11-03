@@ -26,7 +26,7 @@ export default function FilterPanel({ filters, setFilter, clearFilters }) {
   }
 
   return (
-    <aside className="rounded-xl border border-slate-200 bg-white p-4">
+    <aside className="rounded-xl border border-slate-200 bg-surface p-4">
       <div className="flex items-center justify-between">
         <h2 className="text-base font-bold text-slate-900">Filters</h2>
         <button
@@ -135,7 +135,7 @@ export default function FilterPanel({ filters, setFilter, clearFilters }) {
                 aria-pressed={active}
                 className={`rounded-full border px-3 py-1 text-xs font-medium transition-colors ${
                   active
-                    ? "border-primary bg-primary-50 text-primary-700"
+                    ? "border-primary bg-primary-50 text-primary-strong"
                     : "border-slate-200 text-slate-600 hover:border-slate-300"
                 }`}
               >

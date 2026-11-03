@@ -2,6 +2,78 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Theme colours as "R G B" triples, used by tailwind.config.js. Light is the
+   default; the "dark" class on <html> (set by ThemeContext) switches them. */
+:root {
+  color-scheme: light;
+  --surface: 255 255 255;
+  --slate-50: 248 250 252;
+  --slate-100: 241 245 249;
+  --slate-200: 226 232 240;
+  --slate-300: 203 213 225;
+  --slate-400: 148 163 184;
+  --slate-500: 100 116 139;
+  --slate-600: 71 85 105;
+  --slate-700: 51 65 85;
+  --slate-800: 30 41 59;
+  --slate-900: 15 23 42;
+  --slate-950: 2 6 23;
+  --primary-50: 254 242 242;
+  --primary-100: 254 226 226;
+  --primary-200: 254 202 202;
+  --primary-strong: 185 28 28;
+  --red-50: 254 242 242;
+  --red-100: 254 226 226;
+  --green-50: 240 253 244;
+  --green-100: 220 252 231;
+  --green-600: 22 163 74;
+  --green-700: 21 128 61;
+  --amber-100: 254 243 199;
+  --amber-600: 217 119 6;
+  --amber-700: 180 83 9;
+}
+
+/* Dark: the grey scale is reversed (light text, dark panels) and the pale
+   tints become deep ones so badges stay readable. */
+.dark {
+  color-scheme: dark;
+  --surface: 15 23 42;
+  --slate-50: 22 32 52;
+  --slate-100: 30 41 59;
+  --slate-200: 51 65 85;
+  --slate-300: 71 85 105;
+  --slate-400: 100 116 139;
+  --slate-500: 148 163 184;
+  --slate-600: 170 182 198;
+  --slate-700: 203 213 225;
+  --slate-800: 226 232 240;
+  --slate-900: 241 245 249;
+  --slate-950: 248 250 252;
+  --primary-50: 69 10 10;
+  --primary-100: 92 18 18;
+  --primary-200: 153 27 27;
+  --primary-strong: 252 165 165;
+  --red-50: 69 10 10;
+  --red-100: 92 18 18;
+  --green-50: 5 46 22;
+  --green-100: 20 83 45;
+  --green-600: 74 222 128;
+  --green-700: 134 239 172;
+  --amber-100: 120 53 15;
+  --amber-600: 251 191 36;
+  --amber-700: 252 211 77;
+}
+
 body {
-  @apply bg-white text-slate-800 antialiased;
+  @apply bg-surface text-slate-800 antialiased;
+}
+
+/* Form fields take the page's surface colour, so in dark mode they match the
+   panels instead of the browser's own grey. Utilities can still override. */
+@layer base {
+  select,
+  textarea,
+  input:not([type="checkbox"]):not([type="radio"]):not([type="file"]):not([type="range"]) {
+    background-color: rgb(var(--surface));
+  }
 }

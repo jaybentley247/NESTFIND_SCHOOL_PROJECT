@@ -4,7 +4,7 @@ import { SearchX } from "lucide-react";
 export default function NotFound() {
   return (
     <div className="mx-auto flex max-w-7xl flex-col items-center px-4 py-24 text-center sm:px-6 lg:px-8">
-      <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary-100 text-primary-700">
+      <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary-100 text-primary-strong">
         <SearchX className="h-8 w-8" aria-hidden="true" />
       </div>
       <h1 className="mt-6 text-3xl font-bold text-slate-900">Page not found</h1>

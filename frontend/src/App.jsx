@@ -9,6 +9,8 @@ import Login from "./pages/Login";
 import Saved from "./pages/Saved";
 import Enquiries from "./pages/Enquiries";
 import Messages from "./pages/Messages";
+import Payments from "./pages/Payments";
+import PaymentResult from "./pages/PaymentResult";
 import Dashboard from "./pages/Dashboard";
 import AddEditListing from "./pages/AddEditListing";
 import Hosts from "./pages/Hosts";
@@ -34,6 +36,8 @@ export default function App() {
           <Route path="/enquiries" element={<Enquiries />} />
           <Route path="/messages" element={<Messages />} />
           <Route path="/hosts/:id" element={<HostProfile />} />
+          <Route path="/payments" element={<Payments />} />
+          <Route path="/payments/result" element={<PaymentResult />} />
         </Route>
 
         <Route element={<ProtectedRoute role="host" />}>

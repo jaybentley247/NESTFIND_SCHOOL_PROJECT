@@ -58,7 +58,7 @@ export default function Messages() {
           </Link>
         </div>
       ) : (
-        <div className="mt-6 divide-y divide-slate-100 overflow-hidden rounded-xl border border-slate-200 bg-white">
+        <div className="mt-6 divide-y divide-slate-100 overflow-hidden rounded-xl border border-slate-200 bg-surface">
           {conversations.map((conversation) => (
             <button
               key={conversation.id}

@@ -5,6 +5,7 @@ import ImageCarousel from "../components/property/ImageCarousel";
 import AmenitiesList from "../components/property/AmenitiesList";
 import HostCard from "../components/property/HostCard";
 import EnquiryModal from "../components/property/EnquiryModal";
+import PayNowButton from "../components/property/PayNowButton";
 import PropertyCard from "../components/property/PropertyCard";
 import Skeleton from "../components/ui/Skeleton";
 import ErrorState from "../components/ui/ErrorState";
@@ -75,7 +76,7 @@ export default function PropertyDetail() {
           {/* Property Header */}
           <div className="flex flex-wrap items-start justify-between gap-3">
             <div>
-              <span className="inline-block rounded-full bg-primary-100 px-3 py-1 text-xs font-semibold capitalize text-primary-700">
+              <span className="inline-block rounded-full bg-primary-100 px-3 py-1 text-xs font-semibold capitalize text-primary-strong">
                 For {property.listing_type === "shortlet" ? "Short-let" : property.listing_type}
               </span>
               <h1 className="mt-2 text-2xl font-bold text-slate-900 sm:text-3xl">{property.title}</h1>
@@ -150,8 +151,9 @@ export default function PropertyDetail() {
           </div>
         </div>
 
-        {/* Host / Agent Card */}
+        {/* Payment + Host / Agent Card */}
         <div>
+          <PayNowButton property={property} />
           <HostCard host={property.host} listingCount={hostListingCount} onContact={() => setEnquiryOpen(true)} />
         </div>
       </div>

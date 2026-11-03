@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import "./index.css";
 import App from "./App.jsx";
 import { ToastProvider } from "./context/ToastContext.jsx";
+import { ThemeProvider } from "./context/ThemeContext.jsx";
 import { AuthProvider } from "./context/AuthContext.jsx";
 import { SavedProvider } from "./context/SavedContext.jsx";
 
@@ -21,13 +22,15 @@ createRoot(document.getElementById("root")).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
-        <ToastProvider>
-          <AuthProvider>
-            <SavedProvider>
-              <App />
-            </SavedProvider>
-          </AuthProvider>
-        </ToastProvider>
+        <ThemeProvider>
+          <ToastProvider>
+            <AuthProvider>
+              <SavedProvider>
+                <App />
+              </SavedProvider>
+            </AuthProvider>
+          </ToastProvider>
+        </ThemeProvider>
       </BrowserRouter>
     </QueryClientProvider>
   </StrictMode>,

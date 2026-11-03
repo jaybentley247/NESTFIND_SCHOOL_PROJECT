@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { BedDouble, Bath, Ruler, SquareParking, MapPin, Heart } from "lucide-react";
+import { BedDouble, Bath, Ruler, SquareParking, MapPin, Heart, ArrowRight } from "lucide-react";
 import { formatPrice } from "../../utils/formatPrice";
 import { useSaved } from "../../context/SavedContext";
 import { useAuth } from "../../hooks/useAuth";
@@ -25,9 +25,17 @@ export default function FeaturedPropertyCard({ property }) {
   const saved = isSaved(id);
 
   return (
-    <div className="flex h-full flex-col overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition-shadow hover:shadow-lg">
+    // The title link is stretched over the whole card (after:inset-0), so the
+    // entire card is clickable; the save and View Property buttons sit above it.
+    <div className="group relative flex h-full flex-col overflow-hidden rounded-xl border border-slate-200 bg-surface shadow-sm transition duration-300 hover:border-primary-200 hover:shadow-xl focus-within:ring-2 focus-within:ring-primary motion-safe:hover:-translate-y-1.5">
       <div className="relative aspect-[4/3] overflow-hidden bg-slate-100">
-        <img src={coverImage} alt={title} loading="lazy" className="h-full w-full object-cover" />
+        <img
+          src={coverImage}
+          alt={title}
+          loading="lazy"
+          className="h-full w-full object-cover transition-transform duration-500 ease-out motion-safe:group-hover:scale-110"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
         <span className="absolute left-3 top-3 rounded-full bg-primary px-3 py-1 text-xs font-semibold capitalize text-white shadow">
           {listingType === "shortlet" ? "Short-let" : listingType}
         </span>
@@ -37,7 +45,7 @@ export default function FeaturedPropertyCard({ property }) {
             onClick={() => toggleSave(id)}
             aria-label={saved ? "Remove from saved properties" : "Save property"}
             aria-pressed={saved}
-            className="absolute right-3 top-3 flex h-8 w-8 items-center justify-center rounded-full bg-white/95 text-slate-600 shadow hover:text-error"
+            className="absolute right-3 top-3 z-10 flex h-8 w-8 items-center justify-center rounded-full bg-surface/95 text-slate-600 shadow hover:text-error"
           >
             <Heart className={`h-4 w-4 ${saved ? "fill-error text-error" : ""}`} aria-hidden="true" />
           </button>
@@ -45,8 +53,8 @@ export default function FeaturedPropertyCard({ property }) {
       </div>
 
       <div className="flex flex-1 flex-col p-4">
-        <Link to={`/listings/${id}`} className="group/title block">
-          <h3 className="truncate text-base font-bold text-slate-900 transition-colors group-hover/title:text-primary">
+        <Link to={`/listings/${id}`} className="block after:absolute after:inset-0 after:content-[''] focus:outline-none">
+          <h3 className="truncate text-base font-bold text-slate-900 transition-colors group-hover:text-primary">
             {title}
           </h3>
           <p className="mt-1 flex items-center gap-1 text-xs text-slate-500">
@@ -76,9 +84,11 @@ export default function FeaturedPropertyCard({ property }) {
           </p>
           <Link
             to={`/listings/${id}`}
-            className="shrink-0 rounded-lg bg-primary px-3 py-2 text-xs font-semibold text-white hover:bg-primary-700"
+            tabIndex={-1}
+            className="relative z-10 flex shrink-0 items-center gap-1 rounded-lg bg-primary px-3 py-2 text-xs font-semibold text-white transition-colors group-hover:bg-primary-700"
           >
             View Property
+            <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 motion-safe:group-hover:translate-x-0.5" aria-hidden="true" />
           </Link>
         </div>
       </div>

@@ -55,7 +55,7 @@ export default function EnquiriesFeed() {
 
   return (
     <>
-      <ul className="divide-y divide-slate-100 overflow-hidden rounded-xl border border-slate-200 bg-white">
+      <ul className="divide-y divide-slate-100 overflow-hidden rounded-xl border border-slate-200 bg-surface">
         {recent.map((enquiry) => (
           <li key={enquiry.id} className="flex items-center justify-between gap-3 px-4 py-3">
             <div className="min-w-0">

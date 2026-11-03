@@ -35,7 +35,7 @@ export default function Listings() {
                   onClick={() => setView("grid")}
                   aria-pressed={view === "grid"}
                   className={`flex items-center gap-1.5 px-3 py-2 text-sm font-medium ${
-                    view === "grid" ? "bg-primary text-white" : "bg-white text-slate-600 hover:bg-slate-50"
+                    view === "grid" ? "bg-primary text-white" : "bg-surface text-slate-600 hover:bg-slate-50"
                   }`}
                 >
                   <LayoutGrid className="h-4 w-4" /> Grid
@@ -45,7 +45,7 @@ export default function Listings() {
                   onClick={() => setView("map")}
                   aria-pressed={view === "map"}
                   className={`flex items-center gap-1.5 px-3 py-2 text-sm font-medium ${
-                    view === "map" ? "bg-primary text-white" : "bg-white text-slate-600 hover:bg-slate-50"
+                    view === "map" ? "bg-primary text-white" : "bg-surface text-slate-600 hover:bg-slate-50"
                   }`}
                 >
                   <MapIcon className="h-4 w-4" /> Map

@@ -15,6 +15,7 @@ import StatCard from "../components/dashboard/StatCard";
 import EnquiriesFeed from "../components/dashboard/EnquiriesFeed";
 import AnalyticsChart from "../components/dashboard/AnalyticsChart";
 import ListingsGrid from "../components/dashboard/ListingsGrid";
+import PaymentsReceived from "../components/dashboard/PaymentsReceived";
 
 export default function Dashboard() {
   const { user } = useAuth();
@@ -81,6 +82,14 @@ export default function Dashboard() {
         <h2 className="text-lg font-bold text-slate-900">Recent Enquiries</h2>
         <div className="mt-4">
           <EnquiriesFeed />
+        </div>
+      </div>
+
+      {/* Payments received */}
+      <div className="mt-8">
+        <h2 className="text-lg font-bold text-slate-900">Payments Received</h2>
+        <div className="mt-4">
+          <PaymentsReceived />
         </div>
       </div>
 

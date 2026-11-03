@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { formatPrice } from "./formatPrice";
+import { formatPrice, formatMoney } from "./formatPrice";
 
 describe("formatPrice", () => {
   it("formats a plain amount as Naira with no decimals", () => {
@@ -20,5 +20,15 @@ describe("formatPrice", () => {
 
   it("omits the period suffix for sale listings (empty billing_period)", () => {
     expect(formatPrice(85000000, { billingPeriod: "" })).toBe("₦85,000,000");
+  });
+});
+
+describe("formatMoney", () => {
+  it("drops .00 on whole amounts", () => {
+    expect(formatMoney("1200000.00")).toBe("₦1,200,000");
+  });
+
+  it("keeps kobo when the amount has them", () => {
+    expect(formatMoney("3200000.50")).toBe("₦3,200,000.50");
   });
 });

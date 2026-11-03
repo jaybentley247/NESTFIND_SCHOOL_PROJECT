@@ -120,7 +120,7 @@ export default function Register() {
           <div className="mt-2 grid grid-cols-2 gap-3">
             <label
               className={`flex cursor-pointer items-center gap-2 rounded-lg border px-3 py-2.5 text-sm font-medium transition-colors ${
-                selectedRole === "tenant" ? "border-primary bg-primary-50 text-primary-700" : "border-slate-200 text-slate-600"
+                selectedRole === "tenant" ? "border-primary bg-primary-50 text-primary-strong" : "border-slate-200 text-slate-600"
               }`}
             >
               <input type="radio" value="tenant" className="sr-only" {...register("role")} />
@@ -129,7 +129,7 @@ export default function Register() {
             </label>
             <label
               className={`flex cursor-pointer items-center gap-2 rounded-lg border px-3 py-2.5 text-sm font-medium transition-colors ${
-                selectedRole === "host" ? "border-primary bg-primary-50 text-primary-700" : "border-slate-200 text-slate-600"
+                selectedRole === "host" ? "border-primary bg-primary-50 text-primary-strong" : "border-slate-200 text-slate-600"
               }`}
             >
               <input type="radio" value="host" className="sr-only" {...register("role")} />

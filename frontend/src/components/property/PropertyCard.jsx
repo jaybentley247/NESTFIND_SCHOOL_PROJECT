@@ -29,28 +29,29 @@ export default function PropertyCard({ property }) {
   }
 
   return (
-    <div className="group relative overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition-shadow hover:shadow-md">
+    <div className="group relative overflow-hidden rounded-xl border border-slate-200 bg-surface shadow-sm transition duration-300 hover:border-primary-200 hover:shadow-xl focus-within:ring-2 focus-within:ring-primary motion-safe:hover:-translate-y-1.5">
       {user && (
         <button
           type="button"
           onClick={handleSaveClick}
           aria-label={saved ? "Remove from saved properties" : "Save property"}
           aria-pressed={saved}
-          className="absolute right-3 top-3 z-10 flex h-8 w-8 items-center justify-center rounded-full bg-white/95 text-slate-600 shadow hover:text-error"
+          className="absolute right-3 top-3 z-10 flex h-8 w-8 items-center justify-center rounded-full bg-surface/95 text-slate-600 shadow hover:text-error"
         >
           <Heart className={`h-4 w-4 ${saved ? "fill-error text-error" : ""}`} aria-hidden="true" />
         </button>
       )}
 
-      <Link to={`/listings/${id}`} className="block">
+      <Link to={`/listings/${id}`} className="block focus:outline-none">
         <div className="relative aspect-[4/3] overflow-hidden bg-slate-100">
           <img
             src={coverImage}
             alt={title}
             loading="lazy"
-            className="h-full w-full object-cover transition-transform group-hover:scale-105"
+            className="h-full w-full object-cover transition-transform duration-500 ease-out motion-safe:group-hover:scale-110"
           />
-          <span className="absolute left-3 top-3 rounded-full bg-white/95 px-3 py-1 text-xs font-semibold capitalize text-slate-800 shadow">
+          <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+          <span className="absolute left-3 top-3 rounded-full bg-surface/95 px-3 py-1 text-xs font-semibold capitalize text-slate-800 shadow">
             For {listingType}
           </span>
         </div>
@@ -59,7 +60,7 @@ export default function PropertyCard({ property }) {
           <p className="text-lg font-bold text-slate-900">
             {formatPrice(price, { billingPeriod })}
           </p>
-          <h3 className="mt-1 truncate text-sm font-medium text-slate-800">{title}</h3>
+          <h3 className="mt-1 truncate text-sm font-medium text-slate-800 transition-colors group-hover:text-primary">{title}</h3>
           <p className="mt-1 flex items-center gap-1 text-xs text-slate-500">
             <MapPin className="h-3.5 w-3.5" aria-hidden="true" />
             {city}, {state}

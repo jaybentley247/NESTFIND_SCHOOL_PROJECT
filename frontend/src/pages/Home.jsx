@@ -110,17 +110,23 @@ export default function Home() {
   return (
     <div>
       {/* Hero */}
-      <section className="relative overflow-hidden bg-slate-900">
-        {/* Deliberately eager, not lazy — this is the largest above-the-fold
-            element (LCP), so lazy-loading it would delay first paint. Every
-            other image in the app uses loading="lazy" per the PRD checklist;
-            this is the one justified exception. */}
-        <img
-          src="https://www.image2url.com/r2/default/images/1784844337400-68c79401-2374-4a6a-8d8e-5af94fe9f469.png"
-          alt="Modern home exterior"
+      <section className="relative overflow-hidden bg-ink-900">
+        {/* Background video: muted + playsInline so browsers allow autoplay,
+            including on phones. The poster is the previous hero photo, shown
+            straight away while the video loads, or instead of it if it can't
+            play. Decorative, so hidden from screen readers. */}
+        <video
+          src="https://videotourl.com/videos/1793716553783-dbe1dabd-0d2c-42f1-8c2d-95c023c3dd74.mp4"
+          poster="https://www.image2url.com/r2/default/images/1784844337400-68c79401-2374-4a6a-8d8e-5af94fe9f469.png"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          aria-hidden="true"
           className="absolute inset-0 h-full w-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-slate-900/10" />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink-900/90 via-ink-900/40 to-ink-900/10" />
 
         <div className="relative mx-auto max-w-7xl px-4 pb-32 pt-24 text-center sm:px-6 lg:px-8">
           <p
@@ -131,7 +137,7 @@ export default function Home() {
           <h1 className="mt-3 text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
             Find your next home, faster.
           </h1>
-          <p className="mx-auto mt-4 max-w-xl text-lg text-slate-200">
+          <p className="mx-auto mt-4 max-w-xl text-lg text-ink-200">
             Search apartments, houses, and short-lets across Nigeria — list, discover, connect.
           </p>
 
@@ -157,7 +163,7 @@ export default function Home() {
         <div className="relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <form
             onSubmit={handleSearch}
-            className="-mt-16 grid grid-cols-1 items-end gap-3 rounded-2xl bg-white p-4 shadow-2xl ring-1 ring-black/5 sm:grid-cols-3 lg:grid-cols-6"
+            className="-mt-16 grid grid-cols-1 items-end gap-3 rounded-2xl bg-surface p-4 shadow-2xl ring-1 ring-black/5 sm:grid-cols-3 lg:grid-cols-6"
           >
             <SearchField label="City">
               <select value={location} onChange={(event) => setLocation(event.target.value)} className={searchSelectClass}>
@@ -260,7 +266,7 @@ export default function Home() {
             {steps.map(({ icon: Icon, title, body, image, alt }) => (
               <div key={title} className="text-center">
                 <img src={image} alt={alt} loading="lazy" className="aspect-[4/3] w-full rounded-xl object-cover" />
-                <div className="relative mx-auto -mt-6 flex h-12 w-12 items-center justify-center rounded-full bg-primary-100 text-primary-700 ring-4 ring-white">
+                <div className="relative mx-auto -mt-6 flex h-12 w-12 items-center justify-center rounded-full bg-primary-100 text-primary-strong ring-4 ring-surface">
                   <Icon className="h-6 w-6" aria-hidden="true" />
                 </div>
                 <h3 className="mt-4 text-lg font-semibold text-slate-900">{title}</h3>

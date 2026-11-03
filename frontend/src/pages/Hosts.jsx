@@ -11,11 +11,11 @@ const PAGE_SIZE = 12;
 
 function HostCard({ host }) {
   return (
-    <article className="flex flex-col items-center rounded-xl border border-slate-200 bg-white p-6 text-center">
+    <article className="flex flex-col items-center rounded-xl border border-slate-200 bg-surface p-6 text-center">
       {host.avatar ? (
         <img src={host.avatar} alt={host.full_name} loading="lazy" className="h-20 w-20 rounded-full object-cover" />
       ) : (
-        <span className="flex h-20 w-20 items-center justify-center rounded-full bg-primary-100 text-2xl font-bold text-primary-700">
+        <span className="flex h-20 w-20 items-center justify-center rounded-full bg-primary-100 text-2xl font-bold text-primary-strong">
           {host.full_name[0]?.toUpperCase()}
         </span>
       )}

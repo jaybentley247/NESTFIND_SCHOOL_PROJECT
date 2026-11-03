@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { Menu, X, LogOut, Heart, Mail, LayoutDashboard } from "lucide-react";
+import { Menu, X, LogOut, Heart, Mail, LayoutDashboard, Receipt } from "lucide-react";
 import { useAuth } from "../../hooks/useAuth";
+import ThemeToggle from "./ThemeToggle";
 
 function navLinksFor(user) {
   const links = [
@@ -38,7 +39,7 @@ export default function Navbar() {
   }
 
   return (
-    <header className="sticky top-0 z-40 border-b border-slate-200 bg-white/90 backdrop-blur">
+    <header className="sticky top-0 z-40 border-b border-slate-200 bg-surface/90 backdrop-blur">
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 sm:px-6 lg:px-8">
         <Link to="/" className="flex items-center">
           <img src="/Arowwai-red.png" alt="NestFind" className="h-16 w-auto" />
@@ -50,7 +51,7 @@ export default function Navbar() {
               key={link.to}
               to={link.to}
               className={({ isActive }) =>
-                `text-sm font-bold text-primary transition-colors hover:text-primary-700 ${
+                `text-sm font-bold text-primary transition-colors hover:text-primary-strong ${
                   isActive ? "underline underline-offset-4" : ""
                 }`
               }
@@ -61,6 +62,7 @@ export default function Navbar() {
         </div>
 
         <div className="hidden items-center gap-3 md:flex">
+          <ThemeToggle />
           {user ? (
             <div className="relative" ref={menuRef}>
               <button
@@ -73,7 +75,7 @@ export default function Navbar() {
                 {user.avatar ? (
                   <img src={user.avatar} alt="" loading="lazy" className="h-7 w-7 rounded-full object-cover" />
                 ) : (
-                  <span className="flex h-7 w-7 items-center justify-center rounded-full bg-primary-100 text-xs font-semibold text-primary-700">
+                  <span className="flex h-7 w-7 items-center justify-center rounded-full bg-primary-100 text-xs font-semibold text-primary-strong">
                     {user.full_name?.[0]?.toUpperCase()}
                   </span>
                 )}
@@ -83,7 +85,7 @@ export default function Navbar() {
               {menuOpen && (
                 <div
                   role="menu"
-                  className="absolute right-0 mt-2 w-48 overflow-hidden rounded-lg border border-slate-200 bg-white py-1 shadow-lg"
+                  className="absolute right-0 mt-2 w-48 overflow-hidden rounded-lg border border-slate-200 bg-surface py-1 shadow-lg"
                 >
                   {user.role === "tenant" && (
                     <>
@@ -92,6 +94,9 @@ export default function Navbar() {
                       </Link>
                       <Link to="/enquiries" onClick={() => setMenuOpen(false)} className="flex items-center gap-2 px-4 py-2 text-sm text-slate-700 hover:bg-slate-50">
                         <Mail className="h-4 w-4" /> My Enquiries
+                      </Link>
+                      <Link to="/payments" onClick={() => setMenuOpen(false)} className="flex items-center gap-2 px-4 py-2 text-sm text-slate-700 hover:bg-slate-50">
+                        <Receipt className="h-4 w-4" /> My Payments
                       </Link>
                     </>
                   )}
@@ -139,6 +144,7 @@ export default function Navbar() {
       {open && (
         <div className="border-t border-slate-200 px-4 pb-4 md:hidden">
           <div className="flex flex-col gap-3 pt-3">
+            <ThemeToggle />
             {navLinks.map((link) => (
               <NavLink
                 key={link.to}
@@ -149,6 +155,11 @@ export default function Navbar() {
                 {link.label}
               </NavLink>
             ))}
+            {user?.role === "tenant" && (
+              <NavLink to="/payments" onClick={() => setOpen(false)} className="text-sm font-bold text-primary">
+                My Payments
+              </NavLink>
+            )}
             {user ? (
               <button
                 type="button"

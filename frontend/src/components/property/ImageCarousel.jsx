@@ -42,7 +42,7 @@ export default function ImageCarousel({ images, alt }) {
               type="button"
               onClick={scrollPrev}
               aria-label="Previous photo"
-              className="absolute left-3 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-slate-700 shadow hover:bg-white"
+              className="absolute left-3 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-surface/90 text-slate-700 shadow hover:bg-surface"
             >
               <ChevronLeft className="h-5 w-5" />
             </button>
@@ -50,7 +50,7 @@ export default function ImageCarousel({ images, alt }) {
               type="button"
               onClick={scrollNext}
               aria-label="Next photo"
-              className="absolute right-3 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-slate-700 shadow hover:bg-white"
+              className="absolute right-3 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-surface/90 text-slate-700 shadow hover:bg-surface"
             >
               <ChevronRight className="h-5 w-5" />
             </button>

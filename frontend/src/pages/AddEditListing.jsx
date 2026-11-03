@@ -225,7 +225,7 @@ export default function AddEditListing() {
         <StepIndicator steps={STEPS} currentStep={step} />
       </div>
 
-      <div className="mt-8 rounded-xl border border-slate-200 bg-white p-6">
+      <div className="mt-8 rounded-xl border border-slate-200 bg-surface p-6">
         {step === 1 && (
           <div className="space-y-4">
             <div>
@@ -361,7 +361,7 @@ export default function AddEditListing() {
                   onClick={() => dispatch({ type: "TOGGLE_AMENITY", key })}
                   aria-pressed={active}
                   className={`rounded-full border px-4 py-2 text-sm font-medium transition-colors ${
-                    active ? "border-primary bg-primary-50 text-primary-700" : "border-slate-200 text-slate-600 hover:border-slate-300"
+                    active ? "border-primary bg-primary-50 text-primary-strong" : "border-slate-200 text-slate-600 hover:border-slate-300"
                   }`}
                 >
                   {label}

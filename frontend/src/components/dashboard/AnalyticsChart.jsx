@@ -17,7 +17,7 @@ import {
 export default function AnalyticsChart({ enquiriesTrend, viewsByListing }) {
   return (
     <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-      <div className="rounded-xl border border-slate-200 bg-white p-4">
+      <div className="rounded-xl border border-slate-200 bg-surface p-4">
         <h3 className="text-sm font-semibold text-slate-700">Enquiries — last 30 days</h3>
         <div className="mt-4 h-56">
           <ResponsiveContainer width="100%" height="100%">
@@ -28,16 +28,16 @@ export default function AnalyticsChart({ enquiriesTrend, viewsByListing }) {
                   <stop offset="95%" stopColor="#DC2626" stopOpacity={0} />
                 </linearGradient>
               </defs>
-              <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" vertical={false} />
+              <CartesianGrid strokeDasharray="3 3" stroke="#94a3b8" strokeOpacity={0.3} vertical={false} />
               <XAxis
                 dataKey="date"
                 tickFormatter={(value) => new Date(value).toLocaleDateString("en-NG", { month: "short", day: "numeric" })}
                 interval={4}
-                tick={{ fontSize: 11, fill: "#64748b" }}
+                tick={{ fontSize: 11, fill: "#94a3b8" }}
                 axisLine={false}
                 tickLine={false}
               />
-              <YAxis allowDecimals={false} tick={{ fontSize: 11, fill: "#64748b" }} axisLine={false} tickLine={false} width={24} />
+              <YAxis allowDecimals={false} tick={{ fontSize: 11, fill: "#94a3b8" }} axisLine={false} tickLine={false} width={24} />
               <Tooltip
                 labelFormatter={(value) => new Date(value).toLocaleDateString("en-NG", { month: "short", day: "numeric" })}
                 formatter={(value) => [value, "Enquiries"]}
@@ -48,18 +48,18 @@ export default function AnalyticsChart({ enquiriesTrend, viewsByListing }) {
         </div>
       </div>
 
-      <div className="rounded-xl border border-slate-200 bg-white p-4">
+      <div className="rounded-xl border border-slate-200 bg-surface p-4">
         <h3 className="text-sm font-semibold text-slate-700">Views by listing</h3>
         <div className="mt-4 h-56">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart data={viewsByListing} layout="vertical" margin={{ left: 8 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" horizontal={false} />
-              <XAxis type="number" allowDecimals={false} tick={{ fontSize: 11, fill: "#64748b" }} axisLine={false} tickLine={false} />
+              <CartesianGrid strokeDasharray="3 3" stroke="#94a3b8" strokeOpacity={0.3} horizontal={false} />
+              <XAxis type="number" allowDecimals={false} tick={{ fontSize: 11, fill: "#94a3b8" }} axisLine={false} tickLine={false} />
               <YAxis
                 type="category"
                 dataKey="title"
                 width={110}
-                tick={{ fontSize: 11, fill: "#64748b" }}
+                tick={{ fontSize: 11, fill: "#94a3b8" }}
                 axisLine={false}
                 tickLine={false}
                 tickFormatter={(value) => (value.length > 16 ? `${value.slice(0, 16)}…` : value)}

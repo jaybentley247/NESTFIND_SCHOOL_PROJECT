@@ -45,11 +45,11 @@ export default function HostProfile() {
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6">
-      <div className="flex flex-col items-center gap-4 rounded-xl border border-slate-200 bg-white p-6 text-center sm:flex-row sm:text-left">
+      <div className="flex flex-col items-center gap-4 rounded-xl border border-slate-200 bg-surface p-6 text-center sm:flex-row sm:text-left">
         {host.avatar ? (
           <img src={host.avatar} alt={host.full_name} loading="lazy" className="h-20 w-20 rounded-full object-cover" />
         ) : (
-          <span className="flex h-20 w-20 items-center justify-center rounded-full bg-primary-100 text-2xl font-bold text-primary-700">
+          <span className="flex h-20 w-20 items-center justify-center rounded-full bg-primary-100 text-2xl font-bold text-primary-strong">
             {host.full_name[0]?.toUpperCase()}
           </span>
         )}

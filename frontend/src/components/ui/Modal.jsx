@@ -25,7 +25,7 @@ export default function Modal({ open, onClose, title, children }) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-      <div className="absolute inset-0 bg-slate-900/50" onClick={onClose} aria-hidden="true" />
+      <div className="absolute inset-0 bg-black/50" onClick={onClose} aria-hidden="true" />
 
       <div
         ref={dialogRef}
@@ -33,7 +33,7 @@ export default function Modal({ open, onClose, title, children }) {
         aria-modal="true"
         aria-labelledby="modal-title"
         tabIndex={-1}
-        className="relative z-10 w-full max-w-lg rounded-xl bg-white p-6 shadow-xl outline-none"
+        className="relative z-10 w-full max-w-lg rounded-xl bg-surface p-6 shadow-xl outline-none"
       >
         <div className="flex items-center justify-between">
           <h2 id="modal-title" className="text-lg font-bold text-slate-900">

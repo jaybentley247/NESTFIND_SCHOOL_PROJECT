@@ -2,7 +2,7 @@ import Skeleton from "../ui/Skeleton";
 
 export default function PropertyCardSkeleton() {
   return (
-    <div className="overflow-hidden rounded-xl border border-slate-200 bg-white">
+    <div className="overflow-hidden rounded-xl border border-slate-200 bg-surface">
       <Skeleton className="aspect-[4/3] w-full rounded-none" />
       <div className="space-y-2 p-4">
         <Skeleton className="h-5 w-2/3" />

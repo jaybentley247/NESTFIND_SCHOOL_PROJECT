@@ -7,7 +7,7 @@ export default function PropertyTypeCard({ type, label, icon: Icon }) {
   return (
     <Link
       to={`/listings?type=${type}`}
-      className="group flex flex-col items-center rounded-xl border border-slate-200 bg-white px-4 py-6 text-center shadow-sm transition-all hover:-translate-y-1 hover:shadow-md"
+      className="group flex flex-col items-center rounded-xl border border-slate-200 bg-surface px-4 py-6 text-center shadow-sm transition-all hover:-translate-y-1 hover:shadow-md"
     >
       <span className="flex h-14 w-14 items-center justify-center rounded-full bg-primary text-white transition-colors group-hover:bg-primary-700">
         <Icon className="h-6 w-6" aria-hidden="true" />
